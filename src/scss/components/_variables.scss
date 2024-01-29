@@ -1,0 +1,44 @@
+$black: #1d1d1d;
+$white: #ffffff;
+$gray: #f5f5f5;
+$font-family-main: 'Fira Sans', sans-serif;
+$topbar-height: 60px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+
+:root {
+    --black: #1d1d1d;
+    --black-hover: #000000;
+    --white: #ffffff;
+    --gray: #f5f5f5;
+    --gray-light: #d8d8d8;
+    --gray-footer: #6a6a6a;
+    --gray-footer-accessibility: #a8a8a8;
+    --red: #b9271a;
+    --font-family-main: 'Fira Sans', sans-serif;
+    --topbar-height: 60px;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 24px;
+    --font-size-slider-title: 36px;
+    --font-size-slider-subtitle: 26px;
+    --border-color: #979797;
+    --border-color-footer: #2a2a2a;
+    --padding-container: 20px;
+    --padding-container-mobile: 15px;
+    --header-height: 85px;
+    --notification-height: 20px;
+    --slider-height: 290px;
+    --transition-duration: 0.2s;
+    --transition-timing-function: ease-in-out;
+    --newsletter-input-background: #2b292a;
+    --mobile-breakpoint: 480px;
+    --tablet-breakpoint: 768px;
+    --tablet-breakpoint-lg: 1024px;
+}

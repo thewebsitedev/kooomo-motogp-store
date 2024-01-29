@@ -1,0 +1,102 @@
+.topbar {
+    background-color: var(--black);
+    height: var(--topbar-height);
+    color: var(--white);
+    text-align: center;
+    font-family: var(--font-family-main);
+    padding: 0 var(--padding-container);
+    a {
+        font-size: 14px;
+        line-height: var(--topbar-height);
+        color: var(--white);
+        text-decoration: underline;
+        &:hover {
+            color: var(--gray);
+        }
+    }
+}
+.topbar-container {
+    display: flex;
+    justify-content: center;
+}
+.topbar-ls {
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--padding-container);
+    a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        padding-left: 10px;
+        &:first-child {
+            padding-left: 0;
+        }
+        &:after {
+            content: "/";
+            padding-left: 10px;
+        }
+        &:last-child:after {
+            content: "";
+            padding-left: 0;
+        }
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        button {
+            color: var(--white);
+            font-size: var(--font-size-sm);
+            margin-right: 15px;
+        }
+        &:last-child {
+            button {
+                margin-right: 0;
+            }
+        }
+    }
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 15px;
+        background-color: #f9f9f9;
+        min-width: 50px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        opacity: 0;
+        border-radius: 4px;
+        margin: 0;
+        text-align: center;
+        padding: 0;
+        transition: opacity 0.3s ease;
+    }
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+    }
+    .dropdown-menu li {
+        cursor: pointer;
+        color: black;
+        padding: 6px 8px;
+        text-decoration: none;
+        display: block;
+    }
+    .dropdown-menu a:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .topbar {
+        height: 40px;
+        padding: 0 var(--padding-container-mobile);
+        a {
+            font-size: var(--font-size-xs);
+            line-height: 40px;
+        }
+    }
+}

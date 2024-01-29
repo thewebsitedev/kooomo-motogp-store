@@ -1,0 +1,217 @@
+// A collection of useful utility classes
+
+// Anti-aliasing
+.anti-aliasing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.subpixel-antialiased {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+}
+
+// Visiblity utilities
+.hidden {
+    display: none !important;
+}
+.show {
+    opacity: 1;
+    visibility: visible;
+}
+.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+// Text utilities
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+// list utilities
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Transition utilities
+.transition {
+    transition: all 0.2s ease-in-out;
+}
+
+// Border utilities
+.border-bottom {
+    border-bottom: 1px solid var(--border-color);
+}
+.border-bottom-alt {
+    border-bottom: 1px solid var(--gray-light);
+}
+
+// Padding utilities
+.padding-container {
+    padding: 0 var(--padding-container);
+}
+
+// Supscript utilities
+.sup {
+    font-size: 4px;
+    top: -7px;
+}
+
+// flex utilities
+.flex {
+    display: flex;
+}
+.flex-grow  {
+    flex-grow: 1;
+}
+
+// rectangle utilities
+.rectangle {
+    display: inline-block;
+    width: 7px;
+    height: 13px;
+    background-color: var(--border-color);
+    margin-right: 0;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-timing-function);
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+// list utilities
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.inline {
+    display: inline-block;
+    position: relative;
+}
+
+// scroll utilities
+.back-to-top {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--red);
+    color: var(--white);
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 999;
+    transition: background-color var(--transition-duration) var(--transition-timing-function), opacity var(--transition-duration) var(--transition-timing-function), visibility var(--transition-duration) var(--transition-timing-function);
+    &:hover {
+        background-color: var(--black-hover);
+    }
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.back-to-top-caret {
+    position: absolute;
+    top: calc(50% + 2.5px);
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid var(--white);
+    border-right: 1px solid var(--white);
+    background-color: transparent;
+    transition: border-color var(--transition-duration) var(--transition-timing-function);
+}
+
+.loading {
+    // width: 200px;
+    text-align: center;
+    padding: 0 20px;
+    color: var(--gray-footer);
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0 auto 60px;
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    > svg {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+// button utilities
+
+.icon-button {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+// screen reader utilities
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+// responsive utilities
+@media only screen and (max-width: 1024px) {
+    .show-desktop {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 1025px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 820px) {
+    .show-tablet-lg {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 821px) {
+    .hide-tablet-lg {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .show-tablet {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 769px) {
+    .hide-tablet {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .show-mobile {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 481px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}

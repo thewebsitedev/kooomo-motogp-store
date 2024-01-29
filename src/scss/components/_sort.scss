@@ -1,0 +1,64 @@
+.sort {
+    display: flex;
+    height: 74px;
+    text-transform: uppercase;
+    > div {
+        display: flex;
+        align-items: center;
+        padding: 0 var(--padding-container);
+        border-right: 1px solid var(--gray-light);
+        &:last-child {
+            border-right: none;
+        }
+        select {
+            cursor: pointer;
+            text-transform: uppercase;
+            border: 0;
+            font-weight: 700;
+        }
+        input[type="radio"] {
+            /* Add if not using autoprefixer */
+            -webkit-appearance: none;
+            appearance: none;
+            /* For iOS < 15 to remove gradient background */
+            background-color: #fff;
+            /* Not removed via appearance */
+            margin: 0;
+        }
+    }
+}
+
+.items-total {
+    font-weight: 500;
+}
+
+.sort-title, .show-grid-title {
+    font-size: var(--font-size);
+    margin-right: var(--padding-container);
+}
+
+.show-grid-label {
+    margin-right: var(--padding-container);
+    cursor: pointer;
+    &:last-child {
+        margin-right: 0;
+    }
+    &:has(input:checked) .rectangle,
+    &:hover .rectangle {
+        background-color: var(--black);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .sort {
+        height: 54px;
+        font-size: var(--font-size-sm);
+        > div {
+            padding: 0 var(--padding-container-mobile);
+        }
+    }
+    .sort-title, .show-grid-title {
+        font-size: var(--font-size-sm);
+        margin-right: var(--padding-container-mobile);
+    }
+}
