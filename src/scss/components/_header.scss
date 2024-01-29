@@ -81,7 +81,7 @@ header {
         label {
             display: none;
         }
-        input[type=text] {
+        .search {
             width: 600px;
             padding: 10px 15px;
             border: 1px solid var(--black);
@@ -162,7 +162,7 @@ header {
     label {
         display: none;
     }
-    input[type=text] {
+    .mobile-search {
         width: calc(100% - 20px);
         padding: 10px 10px;
         border: 1px solid var(--black);
