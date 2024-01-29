@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	const totalItemsEl = document.getElementById("items-total");
 	const loadingEl = document.getElementById("loading");
 	const mobileMenuEl = document.getElementById("mobile-menu");
+	const searchDiv = document.getElementById('header-search');
+	const linksDiv = document.getElementById('header-links');
+	const searchList = document.getElementById("search-list");
+	const mobileSearchList = document.getElementById("mobile-search-list");
 
 	/** UTILITY FUNCTIONS **/
 
@@ -25,23 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// click event for menu button
 	document.getElementById("mobile-menu-button").addEventListener("click", () => {
-		// if menu is not active
-		if (!mobileMenuEl.classList.contains("show")) {
-			// add active class to menu
-			mobileMenuEl.classList.add("show");
-		} else {
-			// remove active class from menu
-			mobileMenuEl.classList.remove("show");
-		}
-	});
+		// Toggle the 'show' class on each click
+		mobileMenuEl.classList.toggle("show");
+	});	
 
 	/** SLIDER **/
-
-	// lazy loading slider images using observer api
-	let options = {
-		root: null, // null for viewport as the root
-		rootMargin: '0px' // threshold for intersection
-	};
 
 	// get the slider element
 	const slideEl = document.getElementById("slide");
@@ -53,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		playSound(sound);
 	});
 
+	// function to play sound
 	function playSound(soundFile) {
         new Audio(soundFile).play();
     }
@@ -200,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			// fetch products from api
 			products = await fetchProducts();
 		}
-
 		// proceed only if products are available
 		if ( products ) {
 			// Show total items count
@@ -263,36 +255,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// click event for search button
 	document.getElementById('search-button').addEventListener('click', function() {
-		var searchDiv = document.getElementById('header-search');
-		var linksDiv = document.getElementById('header-links');
-	
-		// Toggle visibility
-		if (searchDiv.classList.contains('hide')) {
-			searchDiv.classList.remove('hide');
-			searchDiv.classList.add('show');
-			linksDiv.classList.add('hide');
-		} else {
-			searchDiv.classList.remove('show');
-			searchDiv.classList.add('hide');
-			linksDiv.classList.remove('hide');
-		}
+		// Check if 'hide' class is present
+		var isHidden = searchDiv.classList.contains('hide');
+		// Toggle classes based on visibility
+		searchDiv.classList.toggle('hide', !isHidden);
+		searchDiv.classList.toggle('show', isHidden);
+		linksDiv.classList.toggle('hide', isHidden);
 	});
 
 	// function to search products from api and store result in products variable and local storage
 	async function searchProducts(query) {
-		// fetch products from api
-		try {
-			const response = await fetch(
-				SEARCH_API_URL + query
-			);
-			if ( ! response.ok ) {
-				throw new Error( "There is some trouble with the network request." );
+		// sanitize query
+		query = query.trim();
+		// remove special characters
+		query = query.replace(/[^\w\s]/gi, '');
+		// if query is not empty
+		if (query) {
+			// fetch products from api
+			try {
+				const response = await fetch(
+					SEARCH_API_URL + query
+				);
+				if ( ! response.ok ) {
+					throw new Error( "There is some trouble with the network request." );
+				}
+				const data = await response.json();
+				localStorage.setItem(`motogp-store-search-${query}`, JSON.stringify(data));
+				return data;
+			} catch (error) {
+				console.error("There was a problem in searching the products.", error);
 			}
-			const data = await response.json();
-			localStorage.setItem(`motogp-store-search-${query}`, JSON.stringify(data));
-			return data;
-		} catch (error) {
-			console.error("There was a problem in searching the products.", error);
 		}
 	}
 
@@ -304,19 +296,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (searchListEl) {
 			// create a variable to store the html
 			let html = "";
-			// loop through first 12 products
-			products.forEach((product) => {
-				// url encode the product name
-				const encodedName = encodeURIComponent(product.name);
-				// create html template for each product
+			if (products.length) {
+				// loop through first 12 products
+				products.forEach((product) => {
+					// url encode the product name
+					const encodedName = encodeURIComponent(product.name);
+					// create html template for each product
+					html += `
+						<li>
+							<a class="share-search-text" href="#">${product.name}</a>
+							<button class="share-search-button" data-link="/?s=${ encodedName}">share</button>
+						</li>
+					`;
+					
+				});
+			} else {
 				html += `
 					<li>
-						<a class="share-search-text" href="#">${product.name}</a>
-						<button class="share-search-button" data-link="/?s=${ encodedName}">share</button>
+						No results found.
 					</li>
 				`;
-				
-			});
+			}
 			// set the html to search list element
 			searchListEl.innerHTML = html;
 		}
@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// type event for search input
+	// type event for search input on mobile
 	document.getElementById("mobile-search").addEventListener("keyup", (e) => {
 		// wait for user to stop typing
 		setTimeout(() => {
@@ -386,6 +386,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			handleMobileSearch(e);
 		}, 1000);
 	});
+
+	// type event for search input
 	document.getElementById("search").addEventListener("keyup", (e) => {
 		// wait for user to stop typing
 		setTimeout(() => {
@@ -394,24 +396,19 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, 1000);
 	});
 
+	// Function to hide element if click is outside the specified container
+	function hideOnOutsideClick(element, containerSelector, event) {
+		if (element.parentElement.classList.contains("show") && !event.target.closest(containerSelector)) {
+			element.parentElement.classList.remove("show");
+		}
+	}
+
 	// hide search list on click outside of search container
 	document.addEventListener("click", (e) => {
-		// if search list is visible
-		if (document.getElementById("search-list").parentElement.classList.contains("show")) {
-			// if click is outside of search container
-			if (!e.target.closest("#header-search")) {
-				// hide search list
-				document.getElementById("search-list").parentElement.classList.remove("show");
-			}
-		}
-		// if mobile search list is visible
-		if (document.getElementById("mobile-search-list").parentElement.classList.contains("show")) {
-			// if click is outside of search container
-			if (!e.target.closest(".mobile-search-container")) {
-				// hide search list
-				document.getElementById("mobile-search-list").parentElement.classList.remove("show");
-			}
-		}
+		// Hide search list if click is outside of search container
+		hideOnOutsideClick(searchList, "#header-search", e);
+		// Hide mobile search list if click is outside of mobile search container
+		hideOnOutsideClick(mobileSearchList, ".mobile-search-container", e);
 	});
 
 	// copy data-link attribute to clipboard on click of share button
