@@ -25,7 +25,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp|ico)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'images/[hash][ext][query]' // This will output images to 'dist/images/'
