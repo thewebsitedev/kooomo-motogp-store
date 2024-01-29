@@ -4,5 +4,3 @@ package-lock.json
 mockup
 # ignore ds_store files
 .DS_Store
-# ignore build files
-dist
