@@ -97,16 +97,16 @@
     opacity: 0;
     visibility: hidden;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    bottom: var(--size-ten);
+    right: var(--size-ten);
+    width: var(--size-forty);
+    height: var(--size-forty);
     border: 0;
     border-radius: 50%;
     background-color: var(--red);
     color: var(--white);
     text-align: center;
-    line-height: 40px;
+    line-height: var(--size-forty);
     cursor: pointer;
     z-index: 999;
     transition: background-color var(--transition-duration) var(--transition-timing-function), opacity var(--transition-duration) var(--transition-timing-function), visibility var(--transition-duration) var(--transition-timing-function);
@@ -124,8 +124,8 @@
     top: calc(50% + 2.5px);
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    width: 10px;
-    height: 10px;
+    width: var(--size-ten);
+    height: var(--size-ten);
     border-top: 1px solid var(--white);
     border-right: 1px solid var(--white);
     background-color: transparent;
@@ -135,9 +135,9 @@
 .loading {
     // width: 200px;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 var(--padding-container);
     color: var(--gray-footer);
-    font-size: 16px;
+    font-size: var(--font-size);
     border-radius: 4px;
     margin: 0 auto 60px;
     &.disabled {

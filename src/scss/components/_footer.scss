@@ -1,7 +1,7 @@
 .footer {
     background-color: var(--black);
     color: var(--white);
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 300;
     line-height: 1.5;
     a {
@@ -12,14 +12,13 @@
     }
 }
 .footer-main {
-    padding: 40px var(--padding-container) 40px var(--padding-container);
+    padding: var(--size-forty) var(--padding-container) var(--size-forty) var(--padding-container);
 }
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
-    padding: 40px 20px;
-    // center items in grid
+    grid-gap: var(--size-forty);
+    padding: var(--size-forty) var(--padding-container);
     justify-items: center;
 }
 .footer-store-logo, .footer-newsletter-logo {
@@ -35,7 +34,7 @@
     gap: 60px;
 }
 .footer-widget {
-    padding-top: 30px;
+    padding-top: var(--size-thirty);
 }
 .footer-widget-title {
     font-size: var(--font-size-lg);
@@ -49,7 +48,7 @@
     ul {
         color: var(--white);
         li {
-            margin-bottom: 10px;
+            margin-bottom: var(--size-ten);
             &:last-child {
                 margin-bottom: 0;
             }
@@ -135,7 +134,7 @@
 .footer-newsletter-title {
     font-size: var(--font-size);
     font-weight: 800;
-    padding-top: 30px;
+    padding-top: var(--size-thirty);
 }
 .footer-newsletter-form {
     padding-top: 25px;
@@ -172,15 +171,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: var(--size-ten);
             text-transform: uppercase;
             color: var(--white);
             font-size: var(--font-size);
             font-weight: 800;
             letter-spacing: 2px;
-            padding: 0 20px;
+            padding: 0 var(--padding-container);
             img {
-                height: 30px;
+                height: var(--size-thirty);
                 width: auto;
             }
         }
@@ -189,7 +188,7 @@
 
 @media only screen and (max-width: 1024px) {
     .footer-grid {
-        grid-gap: 20px;
+        grid-gap: var(--size-twenty);
         padding-left: 0;
         padding-right: 0;
     }
@@ -222,11 +221,14 @@
 @media only screen and (max-width: 820px) {
     .footer-grid{
         grid-template-columns: repeat(1, 1fr);
-        grid-gap: 40px;
+        grid-gap: var(--size-forty);
     }
     .footer-widgets-wrapper {
-        gap: 40px;
+        gap: var(--size-forty);
     }
+	.footer-widgets-wrapper, .footer-newsletter {
+		text-align: center;
+	}
 }
 
 @media only screen and (max-width: 768px) {
@@ -244,20 +246,20 @@
     }
     .footer-grid {
         grid-template-columns: repeat(1, 1fr);
-        grid-gap: 30px;
+        grid-gap: var(--size-thirty);
         padding: var(--padding-container) 0;
     }
     .footer-widgets-wrapper {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: var(--size-ten);
     }
     .footer-widget {
-        padding-top: 20px;
+        padding-top: var(--padding-container);
     }
     .footer-widget-title {
         min-height: 0;
-        margin-bottom: 20px;
+        margin-bottom: var(--size-twenty);
     }
     .footer-newsletter-form {
         margin-top: 0;
@@ -278,7 +280,7 @@
         text-align: center;
     }
     .footer-newsletter-title {
-        padding-top: 20px;
+        padding-top: var(--padding-container);
     }
     .footer-logo {
         img {
@@ -289,15 +291,15 @@
         text-align: center;
     }
     .footer-company ul {
-        margin-bottom: 20px;
+        margin-bottom: var(--size-twenty);
     }
     .footer-cards {
-        margin-bottom: 20px;
+        margin-bottom: var(--size-twenty);
     }
     .footer-bottom {
         flex-direction: column;
         justify-content: center;
-        padding: 30px var(--padding-container-mobile) 45px;
+        padding: var(--size-thirty) var(--padding-container-mobile) 45px;
         > div {
             align-self: center;
             justify-content: center;

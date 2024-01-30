@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     height: 100%;
-    min-height: 20px;
-    padding: 10px 20px;
+    min-height: var(--size-twenty);
+    padding: var(--size-ten) var(--size-twenty);
     margin: 0;
     list-style: none;
     flex-wrap: wrap;
@@ -15,7 +15,7 @@
         &:not(:last-child) {
             margin-right: 2px;
             &:after {
-                font-size: 12px;
+                font-size: var(--font-size-xs);
                 font-weight: 300;
                 content: "/";
                 margin-left: 2px;
@@ -23,7 +23,7 @@
         }
         a {
             color: var(--black);
-            font-size: 14px;
+            font-size: var(--font-size-sm);
             font-weight: 300;
             text-decoration: none;
             &:hover {
@@ -44,7 +44,7 @@
 
 @media only screen and (max-width: 480px) {
     .breadcrumbs {
-        padding: 10px var(--padding-container-mobile);
+        padding: var(--size-ten) var(--padding-container-mobile);
         li {
             a {
                 font-size: var(--font-size-xs);

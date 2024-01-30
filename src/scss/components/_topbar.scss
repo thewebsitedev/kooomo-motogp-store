@@ -6,7 +6,7 @@
     font-family: var(--font-family-main);
     padding: 0 var(--padding-container);
     a {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
         line-height: var(--topbar-height);
         color: var(--white);
         text-decoration: underline;
@@ -32,13 +32,13 @@
         display: inline-flex;
         align-items: center;
         text-decoration: none;
-        padding-left: 10px;
+        padding-left: var(--size-ten);
         &:first-child {
             padding-left: 0;
         }
         &:after {
             content: "/";
-            padding-left: 10px;
+            padding-left: var(--size-ten);
         }
         &:last-child:after {
             content: "";
@@ -92,11 +92,11 @@
 
 @media only screen and (max-width: 480px) {
     .topbar {
-        height: 40px;
+        height: var(--size-forty);
         padding: 0 var(--padding-container-mobile);
         a {
             font-size: var(--font-size-xs);
-            line-height: 40px;
+            line-height: var(--size-forty);
         }
     }
 }
