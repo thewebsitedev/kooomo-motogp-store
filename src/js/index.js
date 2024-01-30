@@ -31,7 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("mobile-menu-button").addEventListener("click", () => {
 		// Toggle the 'show' class on each click
 		mobileMenuEl.classList.toggle("show");
-	});	
+	});
+
+	// window resize event to hide mobile menu
+	window.addEventListener("resize", () => {
+		mobileMenuEl.classList.remove("show");
+	});
 
 	/** SLIDER **/
 
@@ -346,6 +351,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				renderSearchResults(products, "mobile-search-list");
 				// make search list visible
 				document.getElementById("mobile-search-list").parentElement.classList.add("show");
+				// make search query button visible
+				document.getElementById("share-mobile-query-button").classList.add("show");
+				// add data-link attribute to search query button
+				document.getElementById("share-mobile-query-button").dataset.link = "/?s=" + encodeURIComponent(query);
 			}
 		}
 	}
@@ -359,14 +368,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		// if query is not empty
 		if (query) {
 			// search products from api
-			let products = localStorage.getItem(`motogp-store-search-${query}`);
+			let products = JSON.parse(localStorage.getItem(`motogp-store-search-${query}`));
 			// if not stored, fetch products from api
 			if ( ! products || products.length === 0 ) {
 				// fetch products from api
 				products = await searchProducts(query);
-			} else {
-				// parse products from local storage
-				products = JSON.parse(products);
 			}
 			// proceed only if products are available
 			if ( products ) {
@@ -374,6 +380,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				renderSearchResults(products, "search-list");
 				// make search list visible
 				document.getElementById("search-list").parentElement.classList.add("show");
+				// make search query button visible
+				document.getElementById("share-query-button").classList.add("show");
+				// add data-link attribute to search query button
+				document.getElementById("share-query-button").dataset.link = "/?s=" + encodeURIComponent(query);
 			}
 		}
 	}
@@ -414,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// copy data-link attribute to clipboard on click of share button
 	document.addEventListener("click", (e) => {
 		// if share button is clicked
-		if (e.target.classList.contains("share-search-button")) {
+		if (e.target.classList.contains("share-search-button") || e.target.classList.contains("share-query-button") || e.target.classList.contains("share-mobile-query-button") ) {
 			// get the site link
 			const siteLink = window.location.origin;
 			// get the link

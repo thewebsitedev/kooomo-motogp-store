@@ -69,11 +69,24 @@
         .slider-text {
             min-width: 350px;
         }
-        // .slider-image {
-        //     img {
-        //         max-height: 350px;
-        //     }
-        // }
+    }
+}
+
+@media only screen and (max-width: 1440px) {
+    .slider {
+        background-position-x: left;
+        .slider-text {
+            .slider-title {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            .slider-subtitle {
+                font-size: 24px;
+            }
+            .slider-description {
+                line-height: 18px;
+            }
+        }
     }
 }
 
