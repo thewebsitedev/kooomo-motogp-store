@@ -86,6 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			const data = await response.json();
 			localStorage.setItem("motogp-store-products", JSON.stringify(data));
+			// for future use, store timestamp of last fetch
+			localStorage.setItem("motogp-store-products-timestamp", Date.now());
 			return data;
 		} catch (error) {
 			console.error("There was a problem in fetching the products.", error);
@@ -193,11 +195,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	async function fetchAndRenderProducts() {
 		// fetch products from api
 		let products = JSON.parse(localStorage.getItem("motogp-store-products"));
+		// fetch timestamp
+		let timestamp = localStorage.getItem("motogp-store-products-timestamp");
 		// if not stored, fetch products from api
-		if ( ! products || products.length === 0 ) {
+		// For future use, check timestamp of last fetch and fetch again as required
+		if ( ! products || products.length === 0 || products.length && timestamp && (Date.now() - timestamp > 3600000) ){
 			// fetch products from api
 			products = await fetchProducts();
 		}
+
 		// proceed only if products are available
 		if ( products ) {
 			// Show total items count
